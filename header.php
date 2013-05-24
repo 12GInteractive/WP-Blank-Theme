@@ -28,7 +28,7 @@
 	<body <?php body_class(); ?>>
 	
 		<!-- wrapper -->
-		<div class="wrapper">
+		<div class="wrapper container">
 	
 			<!-- header -->
 			<header class="header clear" role="banner">

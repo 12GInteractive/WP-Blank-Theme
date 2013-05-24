@@ -1,6 +1,6 @@
 # WP Blank Theme
 
-This is a blank html5/responsive theme. [HTML5 Blank](http://html5blank.com/) Using this as starting point. I rewrote the resposniveness to breakpoints instead of fluid.
+This is a blank html5/responsive theme. [HTML5 Blank](http://html5blank.com/) Using this as starting point. I rewrote the responsiveness to breakpoints instead of fluid.
 
 ## Important Notes ##
 This repo contains a submodule (a repo within a repo) of [WP-Options-Panel](https://github.com/owldesign/WP-Blank-Options-Panel). If you dont want to use the Options Panel just remove the ```options``` directory and in your ```functions.php``` remove the the following snippet.

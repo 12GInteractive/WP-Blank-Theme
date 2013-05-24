@@ -1,0 +1,231 @@
+/* 
+
+* Four States of Responsive Web Design
+  1.Widescreen
+  2.Standard 
+  3.Tablet
+  4.Mobile
+* Concept by Tim Holt www.astronautdesigns.com 31/01/2012
+
+This concept credits:
+----------------------------------------------------
+
+* Skeleton V1.1
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 8/17/2011
+*/
+
+
+/* 0. Basic style
+----------------------------------------------------------------------------------------------------------------- */
+
+/* Transitions */
+.column, .columns, header h1 {
+       -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+       -o-transition: all .3s ease-in-out;
+          transition: all .3s ease-in-out;
+}
+
+
+
+/* 1. Widescreen State 
+----------------------------------------------------------------------------------------------------------------- */
+
+/* 
+  no media query since this is the default size
+*/
+
+
+/* Indicator */
+.w960, .w768, .w320 {display: none;}
+.w1176 {display: inline-block;}
+
+.container                                  { position: relative; width: 1176px; margin: 0 auto; padding: 0 15px; }
+.column, .columns                           { float: left; display: inline; margin-left: 15px; margin-right: 15px; }
+
+/* Nested Column Classes */
+.column.alpha, .columns.alpha               { margin-left: 0; }
+.column.omega, .columns.omega               { margin-right: 0; }
+
+/* Base Grid */
+.container .one.column                      { width: 68px;  }
+.container .two.columns                     { width: 166px; }
+.container .three.columns                   { width: 264px; }
+.container .four.columns                    { width: 362px; }
+.container .five.columns                    { width: 460px; }
+.container .six.columns                     { width: 558px; }
+.container .seven.columns                   { width: 656px; }
+.container .eight.columns                   { width: 754px; }
+.container .nine.columns                    { width: 852px; }
+.container .ten.columns                     { width: 950px; }
+.container .eleven.columns                  { width: 1048px; }
+.container .twelve.columns                  { width: 1146px; }
+
+/* Variations */
+.container .one-half.columns        { width: 558px; }
+.container .one-third.columns         { width: 362px; }
+.container .two-thirds.columns        { width: 754px; }
+.container .one-quarter.columns       { width: 264px; }
+.container .three-quarters.columns      { width: 852px; }
+
+.container .one-third.columns               { width: 362px; }
+.container .two-thirds.columns              { width: 852px; }
+
+/*--end Widescreen--*/
+
+
+
+
+/* 2. Standard State 
+----------------------------------------------------------------------------------------------------------------- */
+
+@media only 
+screen and (max-width:1216px),
+screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+/* indicator */
+.w1176, .w768, .w320 {display: none;}
+.w960 {display: inline-block;}
+
+.container                                  { width: 960px; padding: 0 10px; }
+.column, .columns                           { margin-left: 10px; margin-right: 10px; }
+
+/* Base Grid */
+.container .one.column                      { width: 60px;  }
+.container .two.columns                     { width: 140px; }
+.container .three.columns                   { width: 220px; }
+.container .four.columns                    { width: 300px; }
+.container .five.columns                    { width: 380px; }
+.container .six.columns                     { width: 460px; }
+.container .seven.columns                   { width: 540px; }
+.container .eight.columns                   { width: 620px; }
+.container .nine.columns                    { width: 700px; }
+.container .ten.columns                     { width: 780px; }
+.container .eleven.columns                  { width: 860px; }
+.container .twelve.columns                  { width: 940px; }
+
+/* Variations */
+.container .one-half.columns        { width: 460px; }
+.container .one-third.columns         { width: 300px; }
+.container .two-thirds.columns        { width: 620px; }
+.container .one-quarter.columns       { width: 220px; }
+.container .three-quarters.columns      { width: 700px; }
+
+}
+/*--end Standard--*/
+
+
+
+
+/* 3. Tablet State
+----------------------------------------------------------------------------------------------------------------- */
+
+@media only
+screen and (max-width:1023px),
+screen and (min-device-width:321px) and (max-device-width:768px) and (orientation: portrait) {
+
+/* indicator */
+.w1176, .w960, .w320 {display: none;}
+.w768 {display: inline-block;}
+header h1 { margin-left: 0; }
+
+
+/* 
+  repeat 960 grid, but set max of 700px 
+*/
+
+.container                                  { width: 700px; padding: 0 34px; }
+#main-content.columns,
+#sidebar                  { margin-left: 0; margin-right: 0; }
+#sidebar                  { width: 100%; }
+
+/* Base Grid */
+.container .one.column                      { width: 60px;  }
+.container .two.columns                     { width: 140px; }
+.container .three.columns                   { width: 220px; }
+.container .four.columns                    { width: 300px; }
+.container .five.columns                    { width: 380px; }
+.container .six.columns                     { width: 460px; }
+.container .seven.columns                   { width: 540px; }
+.container .eight.columns                   { width: 620px; }
+.container .nine.columns,
+.container .ten.columns,          
+.container .eleven.columns,
+.container .twelve.columns          { width: 700px; } /* max is 700px */
+
+/* Variations */
+.container .one-half.columns        { width: 340px; }
+.container .one-third.columns         { width: 220px; }
+.container .two-thirds.columns        { width: 460px; }
+.container .one-quarter.columns       { width: 160px; }
+.container .three-quarters.columns      { width: 520px; }
+
+/* Full width */
+.fullwidth                  { margin: 0 -10px;}
+.fullwidth .four.columns          { width: 340px;}
+.fullwidth .three.columns           { width: 340px;}
+.fullwidth .three.columns.left-sidebar    { width: 220px; }
+.fullwidth .nine.columns.has-left-sidebar   { width: 460px; }
+
+/* Gallery layout */
+.gallery.fullwidth  {margin: 0 -10px;}
+.gallery.fullwidth .three.columns       {width: 220px;}
+
+}
+/*--end Tablet--*/
+
+
+
+
+/* 4. Mobile State
+----------------------------------------------------------------------------------------------------------------- */
+
+@media only 
+screen and (max-width : 767px),
+screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+/* indicator */
+.w1176, .w960, .w768 {display: none;}
+.w320 {display: inline-block;}
+header h1 { margin-left: 0; text-align: center; margin-bottom: 10px;}
+
+.container                  { width: 300px; padding: 0 10px; }
+.columns, .column               { margin: 0 0 10px; }
+.mobile.multi-column            { margin: 0 -10px; }
+.fullwidth, .gallery.fullwidth        { margin: 0; }
+
+.container .one.column,
+.container .two.columns,
+.container .three.columns,
+.container .four.columns,
+.container .five.columns,
+.container .six.columns,
+.container .seven.columns,
+.container .eight.columns,
+.container .nine.columns,
+.container .ten.columns,
+.container .eleven.columns,
+.container .twelve.columns,
+.container .one-half.columns,
+.container .one-third.columns,
+.container .two-thirds.columns,
+.container .three-quarters.columns      { width: 300px; } /* max is 300px */
+
+/* Variations */
+.container .one-quarter.columns,
+.container .mobile.multi-column .three.columns  { width: 140px; margin-left: 10px; margin-right: 10px; }
+
+.fullwidth .four.columns,
+.fullwidth .three.columns,
+.gallery.fullwidth .three.columns,
+.fullwidth .three.columns.left-sidebar,
+.fullwidth .nine.columns.has-left-sidebar   { width: 300px; }
+
+.m-hide {display: none;}
+
+}
+/*--end Mobile--*/

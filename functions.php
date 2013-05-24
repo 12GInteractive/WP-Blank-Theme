@@ -16,10 +16,11 @@ if(!class_exists('VG_Options')){
 	Theme Support
 \*------------------------------------*/
 
-if (!isset($content_width))
-{
-  $content_width = 900;
-}
+// If needed add content width http://codex.wordpress.org/Content_Width
+// if (!isset($content_width))
+// {
+//   $content_width = 900;
+// }
 
 if (function_exists('add_theme_support'))
 {
@@ -99,9 +100,11 @@ function vg_header_scripts()
 function vg_styles()
 {
   wp_register_style('reset', get_template_directory_uri() . '/reset.css', array(), '1.0', 'all');
+  wp_register_style('reset', get_template_directory_uri() . '/grid.css', array(), '1.0', 'all');
   wp_register_style('style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
   
   wp_enqueue_style('reset'); 
+  wp_enqueue_style('grid'); 
   wp_enqueue_style('style'); 
 }
 
