@@ -1,0 +1,3 @@
+[submodule "options"]
+	path = options
+	url = git@github.com:owldesign/WP-Blank-Options-Panel.git
