@@ -4,9 +4,11 @@ body { font: 300 11px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif; zoom: 
 body:before, body:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
 body:after { clear: both; }
 
-img { max-width: 100%; vertical-align: bottom; }
+img, .size-auto, .size-full, .size-large, .size-medium, .size-thumbnail { max-width: 100%; height: auto; vertical-align: bottom; }
 
 input:focus { outline: 0; border: 1px solid #04a4cc; }
+
+.test { height: 0; width: 0; border-color: transparent; border-style: solid; border-width: 25px; border-bottom-color: red; }
 
 a { color: #444; text-decoration: none; }
 a:hover { color: #444; }
@@ -18,16 +20,3 @@ a:hover, a a:active { outline: 0; }
 ::-webkit-selection { background: #04A4CC; color: #FFF; text-shadow: none; }
 
 ::-moz-selection { background: #04A4CC; color: #FFF; text-shadow: none; }
-
-@media print { * { background: transparent !important; color: black !important; box-shadow: none !important; text-shadow: none !important; }
-  a, a:visited { text-decoration: underline; }
-  a[href]:after { content: " (" attr(href) ")"; }
-  abbr[title]:after { content: " (" attr(title) ")"; }
-  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
-  pre, blockquote { border: 1px solid #999999; page-break-inside: avoid; }
-  thead { display: table-header-group; }
-  tr, img { page-break-inside: avoid; }
-  img { max-width: 100% !important; }
-  @page { margin: 0.5cm; }
-  p, h2, h3 { orphans: 3; widows: 3; }
-  h2, h3 { page-break-after: avoid; } }

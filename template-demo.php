@@ -2,6 +2,7 @@
 	
 	<!-- section -->
 	<section role="main" class="columns six">
+		<div class="test">THIS IS S ATEST</div>
 	
 		<h1><?php the_title(); ?></h1>
 	

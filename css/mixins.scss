@@ -1,15 +1,33 @@
-// Mixins
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆  MIXINS  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
+// Lots of 💜 and credit goes to bourbon.io
+// For usage reffer to http://bourbon.io/docs/
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
 
-// Clearfix
-@mixin clearfix {
-  zoom:1;
-  &:before, &:after {
-    content: "\0020"; 
-    display: block; 
-    height: 0; 
-    overflow: hidden; 
-  }
-  &:after {
-    clear: both;
-  }
-}
+
+// ADDONS +++++++++++++++++++++++++++++++++++ //
+@import 'mixins/addons';    
+// ◇  Prefixer                       
+// ◇  Clearfix                       
+// ◇  Hide Text                       
+// ◇  Size                       
+// ◇  HTML5 Input Types                       
+// ◇  Position                       
+// ◇  Triangle                       
+// ◇  Pexels to em's                       
+// ◇  Ting to Shade                       
+// ++++++++++++++++++++++++++++++++++++++++++ //
+
+
+// CSS3 +++++++++++++++++++++++++++++++++++++ //
+@import 'mixins/css3';    
+// ◇  Appearance                       
+// ◇  Backface Visibility                       
+// ◇  Border Radius                       
+// ◇  Box Sizing                       
+// ◇  Linear Gradient                       
+// ◇  Radial Gradient                       
+// ◇  Placeholder                       
+// ◇  Transition                       
+// ◇  Transform                       
+// ◇  User Select                       
+// ++++++++++++++++++++++++++++++++++++++++++ //

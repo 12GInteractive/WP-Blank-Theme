@@ -1,52 +1,49 @@
 <?php
-/*
- *  Author: Vadim Goncharov | @owldesign
- */
 
-/*------------------------------------*\
-	External Modules/Files
-\*------------------------------------*/
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆  FUNCTIONS  ◆◆◆◆◆◆◆◆◆◆◆◆◆ //
+//  ◇ External Modules/Files                
+//  ◇ Theme Support                         
+//  ◇ Actions & Filters & Shortcodes        
+//  ◇ Custom Post Types                     
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
 
-// Load Options Panel
+// This WP Blank Theme has been configured from html5blank.com
+// Author Credit: @toddmotto
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ EXTERNAL MODULES/FILES                                   
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
 if(!class_exists('VG_Options')){
-  require_once( dirname( __FILE__ ) . '/options/vg-options.php' );
+  require_once( dirname( __FILE__ ) . '/options/vg-options.php' ); // Load Options Panel
 }
 
-/*------------------------------------*\
-	Theme Support
-\*------------------------------------*/
 
-// If needed add content width http://codex.wordpress.org/Content_Width
-// if (!isset($content_width))
-// {
-//   $content_width = 900;
-// }
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ THEME SUPPORT                                            
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 if (function_exists('add_theme_support'))
 {
-  // Add Menu Support
-  add_theme_support('menus');
-
-  // Add Thumbnail Theme Support
-  add_theme_support('post-thumbnails');
+  add_theme_support('menus'); // Add Menu Support
+  add_theme_support('post-thumbnails'); // Add Thumbnail Theme Support
   add_image_size('large', 700, '', true); // Large Thumbnail
   add_image_size('medium', 250, '', true); // Medium Thumbnail
   add_image_size('small', 120, '', true); // Small Thumbnail
   add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
-  // Enables post and comment RSS feed links to head
-  add_theme_support('automatic-feed-links');
-
-  // Localization Support
-  load_theme_textdomain('vg', get_template_directory() . '/languages');
+  add_theme_support('automatic-feed-links'); // Enables post and comment RSS feed links to head
+  load_theme_textdomain('vg', get_template_directory() . '/languages'); // Localization Support
 }
 
-/*------------------------------------*\
-	Functions
-\*------------------------------------*/
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ FUNCTIONS                                              
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // Navigation
-function vg_nav()
+function vg_nav() 
 {
 	wp_nav_menu(
 	array(
@@ -69,16 +66,23 @@ function vg_nav()
 		)
 	);
 }
-
-// Load scripts (header.php)
-function vg_header_scripts()
+// Load conditional scripts
+// function vg_conditional_scripts() 
+// {
+//   if (is_page('pagenamehere')) {
+//     wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0', true); // Conditional script(s)
+//     wp_enqueue_script('scriptname'); // Enqueue it!
+//   }
+// }
+// Load scripts
+function vg_header_scripts()  
 {
   if (!is_admin()) {
-  	wp_deregister_script('jquery'); // Deregister WordPress jQuery
-  	wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array(), '1.9.1');
+    wp_deregister_script('jquery'); // Deregister WordPress jQuery
+    wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array(), '1.9.1');
     wp_register_script('conditionizr', 'http://cdnjs.cloudflare.com/ajax/libs/conditionizr.js/2.2.0/conditionizr.min.js', array(), '2.2.0'); 
     wp_register_script('modernizr', 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js', array(), '2.6.2'); 
-    wp_register_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0'); 
+    wp_register_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0', true); // adding "true" will enqueue in the footer
     
     wp_enqueue_script('jquery'); 
     wp_enqueue_script('conditionizr'); 
@@ -86,30 +90,19 @@ function vg_header_scripts()
     wp_enqueue_script('scripts'); 
   }
 }
-
-// Load conditional scripts
-// function vg_conditional_scripts()
-// {
-//   if (is_page('pagenamehere')) {
-//     wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
-//     wp_enqueue_script('scriptname'); // Enqueue it!
-//   }
-// }
-
 // Load styles
-function vg_styles()
+function vg_styles() 
 {
-  wp_register_style('reset', get_template_directory_uri() . '/reset.css', array(), '1.0', 'all');
-  wp_register_style('reset', get_template_directory_uri() . '/grid.css', array(), '1.0', 'all');
+  wp_register_style('reset', get_template_directory_uri() . '/css/reset.css', array(), '1.0', 'all');
+  wp_register_style('grid', get_template_directory_uri() . '/css/grid.css', array(), '1.0', 'all');
   wp_register_style('style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
   
   wp_enqueue_style('reset'); 
   wp_enqueue_style('grid'); 
   wp_enqueue_style('style'); 
 }
-
 // Register Navigation
-function register_vg_menu()
+function register_vg_menu() 
 {
   register_nav_menus(array( // Using array to specify more menus if needed
     'header-menu' => __('Header Menu', 'vg'), // Main Navigation
@@ -117,27 +110,7 @@ function register_vg_menu()
     'extra-menu' => __('Extra Menu', 'vg') // Extra Navigation if needed (duplicate as many as you need!)
   ));
 }
-
-// Remove the <div> surrounding the dynamic navigation to cleanup markup
-function my_wp_nav_menu_args($args = '')
-{
-  $args['container'] = false;
-  return $args;
-}
-
-// Remove Injected classes, ID's and Page ID's from Navigation <li> items
-function my_css_attributes_filter($var)
-{
-  return is_array($var) ? array() : '';
-}
-
-// Remove invalid rel attribute values in the categorylist
-function remove_category_rel_from_category_list($thelist)
-{
-  return str_replace('rel="category tag"', 'rel="tag"', $thelist);
-}
-
-// Add page slug to body class, love this - Credit: Starkers Wordpress Theme
+// Add page slug to body class
 function add_slug_to_body_class($classes)
 {
   global $post;
@@ -151,10 +124,8 @@ function add_slug_to_body_class($classes)
   } elseif (is_singular()) {
     $classes[] = sanitize_html_class($post->post_name);
   }
-
   return $classes;
 }
-
 // If Dynamic Sidebar Exists
 if (function_exists('register_sidebar'))
 {
@@ -180,7 +151,6 @@ if (function_exists('register_sidebar'))
     'after_title' => '</h3>'
   ));
 }
-
 // Remove wp_head() injected Recent Comment styles
 function my_remove_recent_comments_style()
 {
@@ -190,7 +160,6 @@ function my_remove_recent_comments_style()
     'recent_comments_style'
   ));
 }
-
 // Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
 function vgwp_pagination()
 {
@@ -203,19 +172,16 @@ function vgwp_pagination()
     'total' => $wp_query->max_num_pages
   ));
 }
-
 // Custom Excerpts
 function vgwp_index($length) // Create 20 Word Callback for Index page Excerpts, call using vgwp_excerpt('vgwp_index');
 {
   return 20;
 }
-
 // Create 40 Word Callback for Custom Post Excerpts, call using vgwp_excerpt('vgwp_custom_post');
 function vgwp_custom_post($length)
 {
   return 40;
 }
-
 // Create the Custom Excerpts callback
 function vgwp_excerpt($length_callback = '', $more_callback = '')
 {
@@ -232,33 +198,28 @@ function vgwp_excerpt($length_callback = '', $more_callback = '')
   $output = '<p>' . $output . '</p>';
   echo $output;
 }
-
 // Custom View Article link to Post
 function vg_view_article($more)
 {
   global $post;
   return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'vg') . '</a>';
 }
-
 // Remove Admin bar
 function remove_admin_bar()
 {
   return false;
 }
-
 // Remove 'text/css' from our enqueued stylesheet
 function vg_style_remove($tag)
 {
   return preg_replace('~\s+type=["\'][^"\']++["\']~', '', $tag);
 }
-
 // Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
 function remove_thumbnail_dimensions( $html )
 {
   $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
   return $html;
 }
-
 // Custom Gravatar in Settings > Discussion
 function vggravatar ($avatar_defaults)
 {
@@ -266,7 +227,6 @@ function vggravatar ($avatar_defaults)
   $avatar_defaults[$myavatar] = "Custom Gravatar";
   return $avatar_defaults;
 }
-
 // Threaded Comments
 function enable_threaded_comments()
 {
@@ -276,7 +236,6 @@ function enable_threaded_comments()
     }
   }
 }
-
 // Custom Comments Callback
 function vgcomments($comment, $args, $depth)
 {
@@ -320,11 +279,12 @@ function vgcomments($comment, $args, $depth)
 	<?php endif; ?>
 <?php }
 
-/*------------------------------------*\
-	Actions + Filters + ShortCodes
-\*------------------------------------*/
 
-// Add Actions
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ ACTIONS & FILTERS & SHORTCODES                       
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
+// Actions
 add_action('init', 'vg_header_scripts'); // Add Custom Scripts to wp_head
 // add_action('wp_print_scripts', 'vg_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
@@ -333,8 +293,6 @@ add_action('init', 'register_vg_menu'); // Add Menu
 add_action('init', 'create_post_type_vg'); // Add Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'vgwp_pagination'); // Add Pagination
-
-// Remove Actions
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
 remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
 remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -348,17 +306,11 @@ remove_action('wp_head', 'start_post_rel_link', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
-
-// Add Filters
+// Filters
 add_filter('avatar_defaults', 'vggravatar'); // Custom Gravatar in Settings > Discussion
 add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
 add_filter('widget_text', 'shortcode_unautop'); // Remove <p> tags in Dynamic Sidebars (better!)
-add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
-// add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected classes (Commented out by default)
-// add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected ID (Commented out by default)
-// add_filter('page_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> Page ID's (Commented out by default)
-add_filter('the_category', 'remove_category_rel_from_category_list'); // Remove invalid rel attribute
 add_filter('the_excerpt', 'shortcode_unautop'); // Remove auto <p> tags in Excerpt (Manual Excerpts only)
 add_filter('the_excerpt', 'do_shortcode'); // Allows Shortcodes to be executed in Excerpt (Manual Excerpts only)
 add_filter('excerpt_more', 'vg_view_article'); // Add 'View Article' button instead of [...] for Excerpts
@@ -366,17 +318,15 @@ add_filter('show_admin_bar', 'remove_admin_bar'); // Remove Admin bar
 add_filter('style_loader_tag', 'vg_style_remove'); // Remove 'text/css' from enqueued stylesheet
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
 add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to post images
-
-// Remove Filters
 remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altogether
-
 // Shortcodes
 //add_shortcode('vg_shortcode_demo', 'vg_shortcode_demo'); 
 //add_shortcode('vg_shortcode_demo_2', 'vg_shortcode_demo_2'); 
 
-/*------------------------------------*\
-	Custom Post Types
-\*------------------------------------*/
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ CUSTOM POST TYPES                                     
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // Create 1 Custom Post type for a Demo
 function create_post_type_vg()
@@ -416,16 +366,16 @@ function create_post_type_vg()
   ));
 }
 
-/*------------------------------------*\
-	ShortCode Functions
-\*------------------------------------*/
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ SHORTCODES                                            
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // Shortcode Demo with Nested Capability
 function vg_shortcode_demo($atts, $content = null)
 {
   return '<div class="shortcode-demo">' . do_shortcode($content) . '</div>'; // do_shortcode allows for nested Shortcodes
 }
-
 // Shortcode Demo with simple <h2> tag
 function vg_shortcode_demo_2($atts, $content = null) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
 {
