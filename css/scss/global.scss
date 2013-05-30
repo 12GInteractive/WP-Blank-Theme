@@ -1,0 +1,117 @@
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆  GLOBAL  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
+//  ◇ Global Variables                            
+//  ◇ Misc                              
+//  ◇ General                                
+//  ◇ Typography                                
+//  ◇ Links                                
+//  ◇ Media Quires                                
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
+
+@import 'mixins';
+@import 'grid';
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// GLOBAL VARIABLES
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// Colors 
+
+
+// Font & Size
+$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$verdana: Verdana, Geneva, sans-serif;
+$h1: em(26);
+$h2: em(24);
+$h3: em(22);
+$h4: em(20);
+$h5: em(18);
+$p: em(12);
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// MISC
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+*, *:after, *:before { @include box-sizing(border-box); -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+::selection { background:#04A4CC; color:#FFF; text-shadow:none; }
+::-webkit-selection { background:#04A4CC; color:#FFF; text-shadow:none; }
+::-moz-selection { background:#04A4CC; color:#FFF; text-shadow:none; }
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// GENERAL
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+body { font: normal 16px/1.5 $helvetica; }
+
+img, .size-auto, .size-full, .size-large, .size-medium, .size-thumbnail { max-width: 100%; height: auto; vertical-align:bottom; }
+input:focus { outline:0; border:1px solid #04A4CC; }
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// TYPOGRAPHY
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+h1 { font-size: $h1; line-height: 2.5; }
+h2 { font-size: $h2; line-height: 2; }
+h3 { font-size: $h3; line-height: 1.8; }
+h4 { font-size: $h4; line-height: 1.8; }
+h5 { font-size: $h5; line-height: 1.8; }
+p { font-size: $p; }
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// LINKS
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+a {
+  color: #444;
+  text-decoration: none;
+  &:hover {
+    color: #444;
+  }
+  &:focus {
+    outline: 0;
+  }
+  &:hover, a:active {
+    outline: 0;
+  }
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// MEDIA QUIRES
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// Mobile (Portait & Landscape)
+@media only screen
+and (min-width : 320px)
+and (max-width : 480px) {  }
+
+// Mobile Portrait
+@media only screen
+and (max-width : 320px) {  }
+
+// Mobile Landscape
+@media only screen
+and (min-width : 321px) {  }
+
+// iPads (Portait & Landscape)
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px) {  }
+
+// iPad Portrait
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (orientation : portrait) {  }
+
+// iPad Landscape
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (orientation : landscape) {  }
+
+// Desktops & Laptops
+@media only screen
+and (min-width : 1224px) {  }
+
+// Large Screens
+@media only screen
+and (min-width : 1824px) {  }
+
+// Ratina
+@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min-resolution:144dpi) {  }

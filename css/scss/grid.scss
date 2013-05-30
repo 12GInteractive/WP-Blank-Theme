@@ -1,0 +1,171 @@
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆  GRID  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
+//  ◇ Widescreen                            
+//  ◇ Standard                              
+//  ◇ Tablet                                
+//  ◇ Mobile                                
+// ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
+
+// Author Credit: Dave Gamache @ getskeleton.com
+// Concept Credit: Tim Holt 
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ WIDESCREEN                           
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+.container {
+  position: relative; width: 1176px; margin: 0 auto; padding: 0 15px;
+  .column, .columns                           { float: left; display: inline; margin-left: 15px; margin-right: 15px; }
+  .column.alpha, .columns.alpha               { margin-left: 0; }
+  .column.omega, .columns.omega               { margin-right: 0; }
+
+  // Base Grid 
+  .one.column                      { width: 68px;  }
+  .two.columns                     { width: 166px; }
+  .three.columns                   { width: 264px; }
+  .four.columns                    { width: 362px; }
+  .five.columns                    { width: 460px; }
+  .six.columns                     { width: 558px; }
+  .seven.columns                   { width: 656px; }
+  .eight.columns                   { width: 754px; }
+  .nine.columns                    { width: 852px; }
+  .ten.columns                     { width: 950px; }
+  .eleven.columns                  { width: 1048px; }
+  .twelve.columns                  { width: 1146px; }
+  
+  // Variations
+  .one-half.columns                { width: 558px; }
+  .one-third.columns               { width: 362px; }
+  .two-thirds.columns              { width: 754px; }
+  .one-quarter.columns             { width: 264px; }
+  .three-quarters.columns          { width: 852px; }
+  .one-third.columns               { width: 362px; }
+  .two-thirds.columns              { width: 852px; }
+}
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ STANDARD                             
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+@media only 
+screen and (max-width:1216px),
+screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  .container {
+    .container                                  { width: 960px; padding: 0 10px; }
+    .column, .columns                           { margin-left: 10px; margin-right: 10px; }
+    
+    // Base Grid
+    .one.column                      { width: 60px;  }
+    .two.columns                     { width: 140px; }
+    .three.columns                   { width: 220px; }
+    .four.columns                    { width: 300px; }
+    .five.columns                    { width: 380px; }
+    .six.columns                     { width: 460px; }
+    .seven.columns                   { width: 540px; }
+    .eight.columns                   { width: 620px; }
+    .nine.columns                    { width: 700px; }
+    .ten.columns                     { width: 780px; }
+    .eleven.columns                  { width: 860px; }
+    .twelve.columns                  { width: 940px; }
+
+    // Variations
+    .one-half.columns                { width: 460px; }
+    .one-third.columns               { width: 300px; }
+    .two-thirds.columns              { width: 620px; }
+    .one-quarter.columns             { width: 220px; }
+    .three-quarters.columns          { width: 700px; }
+  }
+}
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ TABLET                               
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// Repeats 960, but sets max of 700px
+
+@media only
+screen and (max-width:1023px),
+screen and (min-device-width:321px) and (max-device-width:768px) and (orientation: portrait) {
+  .container {
+    width: 700px; padding: 0 34px;
+    #main-content.columns,
+    #sidebar                                    { margin-left: 0; margin-right: 0; }
+    #sidebar                                    { width: 100%; }
+    
+    // Base Grid
+    .one.column                      { width: 60px;  }
+    .two.columns                     { width: 140px; }
+    .three.columns                   { width: 220px; }
+    .four.columns                    { width: 300px; }
+    .five.columns                    { width: 380px; }
+    .six.columns                     { width: 460px; }
+    .seven.columns                   { width: 540px; }
+    .eight.columns                   { width: 620px; }
+    .nine.columns, .ten.columns, .eleven.columns, .twelve.columns { width: 700px; } // max 700px
+
+    // Variations 
+    .one-half.columns                { width: 340px; }
+    .one-third.columns               { width: 220px; }
+    .two-thirds.columns              { width: 460px; }
+    .one-quarter.columns             { width: 160px; }
+    .three-quarters.columns          { width: 520px; }
+
+    // Full width
+    .fullwidth {
+      margin: 0 -10px;
+      .four.columns                    { width: 340px;}
+      .three.columns                   { width: 340px;}
+      .three.columns.left-sidebar      { width: 220px; }
+      .nine.columns.has-left-sidebar   { width: 460px; }
+    }
+
+  // Gallery layout
+  .gallery.fullwidth                          {margin: 0 -10px;}
+  .gallery.fullwidth .three.columns           {width: 220px;}
+  }
+}
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ MOBILE                               
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+@media only 
+screen and (max-width : 767px),
+screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .container {
+    width: 300px; padding: 0 10px;
+    .columns, .column                               { margin: 0 0 10px; }
+    .mobile.multi-column                            { margin: 0 -10px; }
+    .fullwidth, .gallery.fullwidth                  { margin: 0; }
+    
+    // Base Grid
+    .one.column,
+    .two.columns,
+    .three.columns,
+    .four.columns,
+    .five.columns,
+    .six.columns,
+    .seven.columns,
+    .eight.columns,
+    .nine.columns,
+    .ten.columns,
+    .eleven.columns,
+    .twelve.columns,
+    .one-half.columns,
+    .one-third.columns,
+    .two-thirds.columns,
+    .three-quarters.columns              { width: 300px; } // max 300px
+    
+    // Variations
+    .one-quarter.columns,
+    .mobile.multi-column .three.columns  { width: 140px; margin-left: 10px; margin-right: 10px; }
+
+    // Full width
+    .fullwidth .four.columns,
+    .fullwidth .three.columns,
+    .gallery.fullwidth .three.columns,
+    .fullwidth .three.columns.left-sidebar,
+    .fullwidth .nine.columns.has-left-sidebar       { width: 300px; }
+    
+    .m-hide {display: none;}
+  }
+}

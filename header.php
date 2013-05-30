@@ -18,11 +18,6 @@
 			
 		<!-- css + javascript -->
 		<?php wp_head(); ?>
-		<script>
-		!function(){
-			conditionizr() // http://conditionizr.com
-		}()
-		</script>
 	</head>
 	<body <?php body_class(); ?>>
 	

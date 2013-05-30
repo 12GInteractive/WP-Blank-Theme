@@ -15,10 +15,8 @@
 // ※ EXTERNAL MODULES/FILES                                   
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
-if(!class_exists('VG_Options')){
-  require_once( dirname( __FILE__ ) . '/options/vg-options.php' ); // Load Options Panel
-}
-
+// You can place your Options Panel code here
+// Suggested https://github.com/owldesign/WP-Blank-Options-Panel
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ※ THEME SUPPORT                                            
@@ -80,12 +78,10 @@ function vg_header_scripts()
   if (!is_admin()) {
     wp_deregister_script('jquery'); // Deregister WordPress jQuery
     wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array(), '1.9.1');
-    wp_register_script('conditionizr', 'http://cdnjs.cloudflare.com/ajax/libs/conditionizr.js/2.2.0/conditionizr.min.js', array(), '2.2.0'); 
     wp_register_script('modernizr', 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js', array(), '2.6.2'); 
     wp_register_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0', true); // adding "true" will enqueue in the footer
     
     wp_enqueue_script('jquery'); 
-    wp_enqueue_script('conditionizr'); 
     wp_enqueue_script('modernizr'); 
     wp_enqueue_script('scripts'); 
   }
@@ -93,13 +89,13 @@ function vg_header_scripts()
 // Load styles
 function vg_styles() 
 {
-  wp_register_style('reset', get_template_directory_uri() . '/css/reset.css', array(), '1.0', 'all');
-  wp_register_style('grid', get_template_directory_uri() . '/css/grid.css', array(), '1.0', 'all');
   wp_register_style('style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
+  wp_register_style('reset', get_template_directory_uri() . '/css/reset.css', array(), '1.0', 'all');
+  wp_register_style('global', get_template_directory_uri() . '/css/global.css', array(), '1.0', 'all');
   
-  wp_enqueue_style('reset'); 
-  wp_enqueue_style('grid'); 
   wp_enqueue_style('style'); 
+  wp_enqueue_style('reset'); 
+  wp_enqueue_style('global'); 
 }
 // Register Navigation
 function register_vg_menu() 
@@ -109,6 +105,15 @@ function register_vg_menu()
     'sidebar-menu' => __('Sidebar Menu', 'vg'), // Sidebar Navigation
     'extra-menu' => __('Extra Menu', 'vg') // Extra Navigation if needed (duplicate as many as you need!)
   ));
+}
+// Remove Dashboard Menu Items
+function my_remove_menu_pages() {
+  // remove_menu_page('options-general.php'); 
+}
+// Remove plugin update notice
+function vg_remove_plugin_update($value) {
+ unset($value->response[ plugin_basename(__FILE__) ]);
+ return $value;
 }
 // Add page slug to body class
 function add_slug_to_body_class($classes)
@@ -293,6 +298,7 @@ add_action('init', 'register_vg_menu'); // Add Menu
 add_action('init', 'create_post_type_vg'); // Add Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'vgwp_pagination'); // Add Pagination
+// add_action( 'admin_menu', 'my_remove_menu_pages' ); // Remove Dashboard menu items
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
 remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
 remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -307,6 +313,8 @@ remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 // Filters
+// add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) ); // Disable WP update notice
+// add_filter('site_transient_update_plugins', 'vg_remove_plugin_update'); // Disable plugin update notification
 add_filter('avatar_defaults', 'vggravatar'); // Custom Gravatar in Settings > Discussion
 add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
