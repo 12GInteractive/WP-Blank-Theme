@@ -107,13 +107,8 @@ function register_vg_menu()
   ));
 }
 // Remove Dashboard Menu Items
-function my_remove_menu_pages() {
+function vg_remove_menu_pages() {
   // remove_menu_page('options-general.php'); 
-}
-// Remove plugin update notice
-function vg_remove_plugin_update($value) {
- unset($value->response[ plugin_basename(__FILE__) ]);
- return $value;
 }
 // Add page slug to body class
 function add_slug_to_body_class($classes)
@@ -298,7 +293,7 @@ add_action('init', 'register_vg_menu'); // Add Menu
 add_action('init', 'create_post_type_vg'); // Add Custom Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'vgwp_pagination'); // Add Pagination
-// add_action( 'admin_menu', 'my_remove_menu_pages' ); // Remove Dashboard menu items
+// add_action( 'admin_menu', 'vg_remove_menu_pages' ); // Remove Dashboard menu items
 remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
 remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
 remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -314,7 +309,7 @@ remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 // Filters
 // add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) ); // Disable WP update notice
-// add_filter('site_transient_update_plugins', 'vg_remove_plugin_update'); // Disable plugin update notification
+// add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) ); // Disable plugin update notification
 add_filter('avatar_defaults', 'vggravatar'); // Custom Gravatar in Settings > Discussion
 add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
