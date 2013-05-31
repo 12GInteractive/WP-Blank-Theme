@@ -14,6 +14,13 @@
 // GLOBAL VARIABLES
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // Colors 
+$bg: #f9f9f9;
+
+$gray: #444444;
+$darkGray: #2c2c2c;
+$liteGray: #a5a5a5;
+
+$blue: #04A4CC;
 
 
 // Font & Size
@@ -25,24 +32,25 @@ $h3: em(22);
 $h4: em(20);
 $h5: em(18);
 $p: em(12);
-
+$link: em(12);
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // MISC
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 *, *:after, *:before { @include box-sizing(border-box); -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-::selection { background:#04A4CC; color:#FFF; text-shadow:none; }
-::-webkit-selection { background:#04A4CC; color:#FFF; text-shadow:none; }
-::-moz-selection { background:#04A4CC; color:#FFF; text-shadow:none; }
+::selection { background: $blue; color:#FFF; text-shadow:none; }
+::-webkit-selection { background: $blue; color:#FFF; text-shadow:none; }
+::-moz-selection { background: $blue; color:#FFF; text-shadow:none; }
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // GENERAL
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-body { font: normal 16px/1.5 $helvetica; }
+html { background-color: $bg; }
+body { font: normal 16px/1.5 $helvetica; color: $darkGray; @include clearfix; }
 
 img, .size-auto, .size-full, .size-large, .size-medium, .size-thumbnail { max-width: 100%; height: auto; vertical-align:bottom; }
-input:focus { outline:0; border:1px solid #04A4CC; }
+input:focus { outline:0; border:1px solid $blue; }
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // TYPOGRAPHY
@@ -61,8 +69,10 @@ p { font-size: $p; }
 a {
   color: #444;
   text-decoration: none;
+  font-size: $link;
+  @include transition(color .3s ease-in-out);
   &:hover {
-    color: #444;
+    color: $blue;
   }
   &:focus {
     outline: 0;

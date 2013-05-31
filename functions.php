@@ -79,13 +79,16 @@ function vg_header_scripts()
     wp_deregister_script('jquery'); // Deregister WordPress jQuery
     wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', array(), '1.9.1');
     wp_register_script('modernizr', 'http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js', array(), '2.6.2'); 
+    wp_register_script('plugins', get_template_directory_uri() . '/js/plugins.js', array(), '1.0.0'); 
     wp_register_script('scripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0', true); // adding "true" will enqueue in the footer
     
     wp_enqueue_script('jquery'); 
     wp_enqueue_script('modernizr'); 
+    wp_enqueue_script('plugins'); 
     wp_enqueue_script('scripts'); 
   }
 }
+
 // Load styles
 function vg_styles() 
 {
@@ -97,6 +100,7 @@ function vg_styles()
   wp_enqueue_style('reset'); 
   wp_enqueue_style('global'); 
 }
+
 // Register Navigation
 function register_vg_menu() 
 {
@@ -106,10 +110,12 @@ function register_vg_menu()
     'extra-menu' => __('Extra Menu', 'vg') // Extra Navigation if needed (duplicate as many as you need!)
   ));
 }
+
 // Remove Dashboard Menu Items
 function vg_remove_menu_pages() {
   // remove_menu_page('options-general.php'); 
 }
+
 // Add page slug to body class
 function add_slug_to_body_class($classes)
 {
@@ -126,6 +132,7 @@ function add_slug_to_body_class($classes)
   }
   return $classes;
 }
+
 // If Dynamic Sidebar Exists
 if (function_exists('register_sidebar'))
 {
@@ -151,6 +158,7 @@ if (function_exists('register_sidebar'))
     'after_title' => '</h3>'
   ));
 }
+
 // Remove wp_head() injected Recent Comment styles
 function my_remove_recent_comments_style()
 {
@@ -160,6 +168,7 @@ function my_remove_recent_comments_style()
     'recent_comments_style'
   ));
 }
+
 // Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
 function vgwp_pagination()
 {
@@ -172,16 +181,19 @@ function vgwp_pagination()
     'total' => $wp_query->max_num_pages
   ));
 }
+
 // Custom Excerpts
 function vgwp_index($length) // Create 20 Word Callback for Index page Excerpts, call using vgwp_excerpt('vgwp_index');
 {
   return 20;
 }
+
 // Create 40 Word Callback for Custom Post Excerpts, call using vgwp_excerpt('vgwp_custom_post');
 function vgwp_custom_post($length)
 {
   return 40;
 }
+
 // Create the Custom Excerpts callback
 function vgwp_excerpt($length_callback = '', $more_callback = '')
 {
@@ -198,28 +210,33 @@ function vgwp_excerpt($length_callback = '', $more_callback = '')
   $output = '<p>' . $output . '</p>';
   echo $output;
 }
+
 // Custom View Article link to Post
 function vg_view_article($more)
 {
   global $post;
   return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'vg') . '</a>';
 }
+
 // Remove Admin bar
 function remove_admin_bar()
 {
   return false;
 }
+
 // Remove 'text/css' from our enqueued stylesheet
 function vg_style_remove($tag)
 {
   return preg_replace('~\s+type=["\'][^"\']++["\']~', '', $tag);
 }
+
 // Remove thumbnail width and height dimensions that prevent fluid images in the_thumbnail
 function remove_thumbnail_dimensions( $html )
 {
   $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
   return $html;
 }
+
 // Custom Gravatar in Settings > Discussion
 function vggravatar ($avatar_defaults)
 {
@@ -236,6 +253,7 @@ function enable_threaded_comments()
     }
   }
 }
+
 // Custom Comments Callback
 function vgcomments($comment, $args, $depth)
 {
@@ -379,6 +397,7 @@ function vg_shortcode_demo($atts, $content = null)
 {
   return '<div class="shortcode-demo">' . do_shortcode($content) . '</div>'; // do_shortcode allows for nested Shortcodes
 }
+
 // Shortcode Demo with simple <h2> tag
 function vg_shortcode_demo_2($atts, $content = null) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
 {
