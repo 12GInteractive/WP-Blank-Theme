@@ -45,7 +45,7 @@ $link: em(12);
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // LAYOUT
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-.wrapper { margin: 0 auto; padding: 0 30px; }
+.wrapper { margin: 0 auto; }
 .container { @include clearfix; }
 .column { @include transition(all .3s ease-in); }
 
