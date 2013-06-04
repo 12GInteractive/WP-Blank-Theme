@@ -1,0 +1,155 @@
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// ※ GRID CALCULATOR
+// ※ Edit wisely, this grid calculator bellonged to Chuck Norris
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+
+// Variables
+$gs-prefixes: m, t, d;
+
+// Functions
+@function gs-grid($prefix){
+  @if $prefix == m  { @return (22.61718750120826,22.61718750120826,22.61718750120826,22.61718749637521); }
+  @if $prefix == t  { @return (14.485677084411359,14.485677084411359,14.485677084411359,14.485677084411359,14.485677081268703,14.485677081085857); }
+  @if $prefix == d  { @return (5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713,5.917397660818713); }
+}
+
+@function gs-pxcols($prefix){
+  @if $prefix == m  { @return (false,false,false,false); }
+  @if $prefix == t  { @return (false,false,false,false,false,false); }
+  @if $prefix == d  { @return (false,false,false,false,false,false,false,false,false,false,false,false); }
+}
+
+@function gs-gutter($prefix, $container: false, $unit:false){
+  $gutter: 0;
+  @if $prefix == m  { $gutter: 3.125; }
+  @if $prefix == t  { $gutter: 2.60416667; }
+  @if $prefix == d  { $gutter: 2.63157895; }
+  @if $unit == true { @return #{gs-adjust($prefix, $gutter, $container) + '%'}; }
+  @else { @return gs-adjust($prefix, $gutter, $container); }
+}
+
+@function gs-width($grid, $start, $end: false, $container: false, $unit: false){
+  $cols: gs-grid($grid);
+  $gutter: gs-gutter($grid);
+  $measure: 0;
+  $gutters: 0;
+  $i: $start;
+
+  @if $end != false {
+    @if ($end - $start) > 0 { $gutters: ($gutter * ($end - $start)); }
+    @while $i <= $end {
+      $measure: $measure + nth($cols,$i);
+      $i: $i + 1;
+    }
+  }
+  @else {
+    $pxcols: gs-pxcols($grid);
+    $pxcol: nth($pxcols,$start);
+    @if ($pxcol != false) and ($unit == true) { @return #{$pxcol + 'px'}; }
+    $measure: nth($cols,$start);
+  }
+  @if $unit == true { @return #{gs-adjust($grid, $measure + $gutters, $container) + '%'}; }
+  @else { @return gs-adjust($grid, $measure + $gutters, $container); }
+}
+
+@function gs-marginleft($grid, $spanstart, $container: false, $unit: false){
+  @if ($container == false and $spanstart > 1) or ($container != false and $spanstart > nth($container,1)) {
+    $start: 1;
+    $end: $spanstart - 1;
+    
+    @if $container != false { $start: nth($container,1); }
+    @if $end == $start { $end: false; }
+    
+    $margin: gs-width($grid, $start, $end);
+    $gutter: gs-gutter($grid);
+    
+    @if $unit == true { @return #{gs-adjust($grid, $margin + $gutter, $container) + '%'}; }
+    @else { @return gs-adjust($grid, $margin + $gutter, $container); }
+  }
+  @else {
+    @return 0;
+  }
+}
+
+@function gs-adjust($grid, $measure, $container: false, $unit: false){
+  $containerend: false;
+  @if length($container) == 2 { $containerend: nth($container,2); }
+  @if $container != false {
+    $adjusted: $measure / gs-width($grid, nth($container,1), $containerend);
+    @if $unit == true { @return #{($adjusted * 100) + '%'}; }
+    @else { @return $adjusted * 100; }
+  }
+  @else {
+    @if $unit == true { @return #{$measure + '%'}; }
+    @else { @return $measure; }
+  }
+}
+
+
+// Mixins
+@mixin gs-media($prefix, $type: false){
+  @if $prefix == d {
+    @media only screen and (min-width: 1140px) { @content; }
+  }
+  @if $prefix == t {
+    @if ($type == min) { @media only screen and (min-width: 768px) { @content; } }
+    @else if ($type == max) { @media only screen and (max-width: 1139px) { @content; } }
+    @else if ($type == min-max) { @media only screen and (min-width: 768px) and (max-width: 1139px) { @content; } }
+    @else { @media only screen and (min-width: 768px) { @content; } }
+  }
+  @if $prefix == m {
+    @media only screen and (max-width: 767px) { @content; }
+  }
+
+}
+
+@mixin gs-span($grid, $start, $end: false, $container: false, $ie: false){
+  @if $start == all {
+    clear: both;
+    width: 100%;
+  }
+  @else {
+    $marginright: -100%;
+    @if ($ie == ie) or ($ie == true) { $marginright: -99.9%; }
+    margin-left: #{gs-marginleft($grid, $start, $container) + '%'};  
+    margin-right: $marginright;
+    width: gs-width($grid, $start, $end, $container, true);
+  }
+}
+
+@mixin gs-pad($grid, $type: pad, $container: false){
+  $pad: 0;
+  @if $type == pad or $type == padin {
+    $pad: (gs-gutter($grid) / 2);
+  }
+  @else if $type == padfull or $type == padinfull {
+    $pad: gs-gutter($grid);
+  }
+  @if $container != false { $pad: gs-adjust($grid, $pad, $container); }
+  @if $type == pad or $type == padfull {
+    left: #{'-' + $pad + '%'};
+    position: relative;
+  }
+  @else if $type == padin or $type == padinfull {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  padding-left: #{$pad + '%'};
+  padding-right: #{$pad + '%'};
+}
+
+@mixin gs-float($grid, $direction, $container: false){
+  $margin: gs-gutter($grid);
+  @if $container != false { $margin: gs-adjust($grid, $margin, $container); }
+  clear: none;
+  float: $direction;
+  @if $direction == left {
+    margin-left: 0;
+    margin-right: #{$margin + '%'};
+  }
+  @else if $direction == right {
+    margin-right: 0;
+    margin-left: #{$margin + '%'};
+  }
+}

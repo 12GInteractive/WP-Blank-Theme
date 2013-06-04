@@ -1,19 +1,28 @@
 <?php 
-/* 
-	Template Name: Demo Page Template 
-*/ 
+//
+// ※ Template Name: Grid 
+// 
 get_header(); 
 ?>
 	
-	<section role="main" class="twelve columns">
+	<section role="main" class="container">
 
-		<h1>This is just a simple header TEXT</h1>
-		<h2>This is just a simple header TEXT</h2>
-		<h3>This is just a simple header TEXT</h3>
-		<h4>This is just a simple header TEXT</h4>
-		<h5>This is just a simple header TEXT</h5>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vulputate, velit at cursus porta, sem sapien elementum libero, sit amet ornare enim sapien nec justo. In tincidunt convallis venenatis. Donec erat sapien, gravida sit amet scelerisque vitae, vestibulum in sapien. Pellentesque eget commodo arcu. Fusce congue, lectus sit amet dapibus rutrum, lectus arcu gravida nisi, ac aliquet purus nisl in risus. Donec gravida mauris rutrum velit sollicitudin a placerat tortor luctus. In hac habitasse platea dictumst. Quisque faucibus, urna eget ullamcorper varius, mauris eros tempus enim, ac pharetra est neque quis justo. Suspendisse in rhoncus lacus. Pellentesque et risus dictum erat tincidunt pretium sit amet vitae arcu. Integer porttitor diam sed felis egestas ullamcorper. Proin fringilla, diam vel elementum vestibulum, felis libero volutpat nulla, blandit iaculis justo lectus ut neque. Etiam sapien ante, fermentum at eleifend vel, fringilla suscipit dui. Vivamus nec nisi augue.</p>
-	
+				<h1>Desktop</h1>
+
+				<!-- class examples -->
+					<div class="column one box"><h1>d1</h1></div>
+					<div class="column two box"><h1>d2</h1></div>
+					<div class="column three box"><h1>d3</h1></div>
+					<div class="column four box"><h1>d4</h1></div>
+					<div class="column five box"><h1>d5</h1></div>
+					<div class="column six box"><h1>d6</h1></div>
+					<div class="column seven box"><h1>d7</h1></div>
+					<div class="column eight box"><h1>d8</h1></div>
+					<div class="column nine box"><h1>d9</h1></div>
+					<div class="column ten box"><h1>d10</h1></div>
+					<div class="column eleven box"><h1>d11</h1></div>
+					<div class="column twelve box"><h1>d12</h1></div>
+
 	</section>
 	
 <?php get_footer(); ?>

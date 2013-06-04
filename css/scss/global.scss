@@ -1,6 +1,7 @@
 // ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆  GLOBAL  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
 //  ◇ Global Variables                            
 //  ◇ Misc                              
+//  ◇ Layout                              
 //  ◇ General                                
 //  ◇ Typography                                
 //  ◇ Links                                
@@ -8,7 +9,6 @@
 // ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
 
 @import 'mixins';
-@import 'grid';
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // GLOBAL VARIABLES
@@ -22,7 +22,6 @@ $liteGray: #a5a5a5;
 
 $blue: #04A4CC;
 
-
 // Font & Size
 $helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $verdana: Verdana, Geneva, sans-serif;
@@ -34,6 +33,7 @@ $h5: em(18);
 $p: em(12);
 $link: em(12);
 
+
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // MISC
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
@@ -42,6 +42,14 @@ $link: em(12);
 ::-webkit-selection { background: $blue; color:#FFF; text-shadow:none; }
 ::-moz-selection { background: $blue; color:#FFF; text-shadow:none; }
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+// LAYOUT
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
+.wrapper { margin: 0 auto; padding: 0 30px; }
+.container { @include clearfix; }
+.column { @include transition(all .3s ease-in); }
+
+.box { background-color: green; }
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // GENERAL

@@ -13,7 +13,7 @@
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 		
 		<!-- icons -->
-		<link href="<?php echo get_template_directory_uri(); ?>/favicon.ico" rel="shortcut icon">
+		<link href="<?php echo get_template_directory_uri(); ?>/favicon.ico?v=1" rel="shortcut icon">
 		<link href="<?php echo get_template_directory_uri(); ?>/touch.png" rel="apple-touch-icon-precomposed">
 			
 		<!-- css + javascript -->
@@ -21,9 +21,9 @@
 	</head>
 	<body <?php body_class(); ?>>
 	
-		<div class="container">
+		<div class="wrapper">
 	
-			<header class="header twelve columns" role="banner">
+			<header class="header" role="banner">
 				
 				<div class="logo">
 					<a href="<?php echo home_url(); ?>">

@@ -94,10 +94,12 @@ function vg_styles()
 {
   wp_register_style('style', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
   wp_register_style('reset', get_template_directory_uri() . '/css/reset.css', array(), '1.0', 'all');
+  wp_register_style('grid', get_template_directory_uri() . '/css/grid.css', array(), '1.0', 'all');
   wp_register_style('global', get_template_directory_uri() . '/css/global.css', array(), '1.0', 'all');
   
   wp_enqueue_style('style'); 
   wp_enqueue_style('reset'); 
+  wp_enqueue_style('grid'); 
   wp_enqueue_style('global'); 
 }
 

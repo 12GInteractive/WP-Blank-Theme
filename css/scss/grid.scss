@@ -1,165 +1,238 @@
 // ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆  GRID  ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
-//  ◇ Widescreen                            
-//  ◇ Standard                              
+//  ◇ Base                              
+//  ◇ Desktop                              
 //  ◇ Tablet                                
 //  ◇ Mobile                                
 // ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
 
-// Author Credit: Dave Gamache @ getskeleton.com
-// Concept Credit: Tim Holt 
-
+@import 'mixins/gridset';
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-// ※ WIDESCREEN                           
+// ※ BASE                             
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-.container                                  { position: relative; width: 1176px; margin: 0 auto; padding: 0 15px; }
-.column, .columns                           { float: left; display: inline; margin-left: 15px; margin-right: 15px; }
 
-/* Nested Column Classes */
-.column.alpha, .columns.alpha               { margin-left: 0; }
-.column.omega, .columns.omega               { margin-right: 0; }
+// Break Points
+$desktop: 1140px; // .wrapper { max-width: $desktop; }
+$tablet: 780px; // .wrapper { max-width: $tablet; }
+$mobile: 320px; // .wrapper { max-width: $mobile; }
 
-/* Base Grid */
-.container .one.column                      { width: 68px;  }
-.container .two.columns                     { width: 166px; }
-.container .three.columns                   { width: 264px; }
-.container .four.columns                    { width: 362px; }
-.container .five.columns                    { width: 460px; }
-.container .six.columns                     { width: 558px; }
-.container .seven.columns                   { width: 656px; }
-.container .eight.columns                   { width: 754px; }
-.container .nine.columns                    { width: 852px; }
-.container .ten.columns                     { width: 950px; }
-.container .eleven.columns                  { width: 1048px; }
-.container .twelve.columns                  { width: 1146px; }
+// Fluid
+$fluid-desktop: 1140px; // .wrapper { min-width: $fluid-desktop; }
+$fluid-tablet: 768px; // .wrapper { min-width: $fluid-tablet; }
+$fluid-mobile: 767px; // .wrapper { max-width: $fluid-mobile; }
 
-/* Variations */
-.container .one-half.columns        { width: 558px; }
-.container .one-third.columns         { width: 362px; }
-.container .two-thirds.columns        { width: 754px; }
-.container .one-quarter.columns       { width: 264px; }
-.container .three-quarters.columns      { width: 852px; }
 
-.container .one-third.columns               { width: 362px; }
-.container .two-thirds.columns              { width: 852px; }
-
+.column {
+  &.one, &.two, &.three, &.four, &.five, &.six, &.seven, &.eight, &.nine, &.ten, &.eleven, &.twelve { display:block;float:left;margin-right:-100%; }
+}
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-// ※ STANDARD                             
+// ※ DESKTOP                             
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-@media only 
-screen and (max-width:1216px),
-screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-  .container                                  { width: 960px; padding: 0 10px; }
-  .column, .columns                           { margin-left: 10px; margin-right: 10px; }
+@media only screen and (min-width: 1140px) {
 
-  /* Base Grid */
-  .container .one.column                      { width: 60px;  }
-  .container .two.columns                     { width: 140px; }
-  .container .three.columns                   { width: 220px; }
-  .container .four.columns                    { width: 300px; }
-  .container .five.columns                    { width: 380px; }
-  .container .six.columns                     { width: 460px; }
-  .container .seven.columns                   { width: 540px; }
-  .container .eight.columns                   { width: 620px; }
-  .container .nine.columns                    { width: 700px; }
-  .container .ten.columns                     { width: 780px; }
-  .container .eleven.columns                  { width: 860px; }
-  .container .twelve.columns                  { width: 940px; }
+  .wrapper { max-width: $desktop; }
 
-  /* Variations */
-  .container .one-half.columns        { width: 460px; }
-  .container .one-third.columns         { width: 300px; }
-  .container .two-thirds.columns        { width: 620px; }
-  .container .one-quarter.columns       { width: 220px; }
-  .container .three-quarters.columns      { width: 700px; }
+  .t-hide, .m-hide { display: none; }
+
+  .column {
+
+    // One Column & Spans
+    &.one { @include gs-span(d, 1); }
+    &.one-two { @include gs-span(d, 1, 2); }
+    &.one-three { @include gs-span(d, 1, 3); }
+    &.one-four { @include gs-span(d, 1, 4); }
+    &.one-five { @include gs-span(d, 1, 5); }
+    &.one-six { @include gs-span(d, 1, 6); }
+    &.one-seven { @include gs-span(d, 1, 7); }
+    &.one-eight { @include gs-span(d, 1, 8); }
+    &.one-nine { @include gs-span(d, 1, 9); }
+    &.one-ten { @include gs-span(d, 1, 10); }
+    &.one-eleven { @include gs-span(d, 1, 11); }
+    &.one-twelve { @include gs-span(d, 1, 12); }
+
+    // Two Columns & Spans
+    &.two { @include gs-span(d, 2); }
+    &.two-two { @include gs-span(d, 2, 2); }
+    &.two-three { @include gs-span(d, 2, 3); }
+    &.two-four { @include gs-span(d, 2, 4); }
+    &.two-five { @include gs-span(d, 2, 5); }
+    &.two-six { @include gs-span(d, 2, 6); }
+    &.two-seven { @include gs-span(d, 2, 7); }
+    &.two-eight { @include gs-span(d, 2, 8); }
+    &.two-nine { @include gs-span(d, 2, 9); }
+    &.two-ten { @include gs-span(d, 2, 10); }
+    &.two-eleven { @include gs-span(d, 2, 11); }
+    &.two-twelve { @include gs-span(d, 2, 12); }
+
+    // Three Columns & Spans
+    &.three { @include gs-span(d, 3); }
+    &.three-four { @include gs-span(d, 3, 4); }
+    &.three-five { @include gs-span(d, 3, 5); }
+    &.three-six { @include gs-span(d, 3, 6); }
+    &.three-seven { @include gs-span(d, 3, 7); }
+    &.three-eight { @include gs-span(d, 3, 8); }
+    &.three-nine { @include gs-span(d, 3, 9); }
+    &.three-ten { @include gs-span(d, 3, 10); }
+    &.three-eleven { @include gs-span(d, 3, 11); }
+    &.three-twelve { @include gs-span(d, 3, 12); }
+
+    // Four Columns & Spans
+    &.four { @include gs-span(d, 4); }
+    &.four-five { @include gs-span(d, 4, 5); }
+    &.four-six { @include gs-span(d, 4, 6); }
+    &.four-seven { @include gs-span(d, 4, 7); }
+    &.four-eight { @include gs-span(d, 4, 8); }
+    &.four-nine { @include gs-span(d, 4, 9); }
+    &.four-ten { @include gs-span(d, 4, 10); }
+    &.four-eleven { @include gs-span(d, 4, 11); }
+    &.four-twelve { @include gs-span(d, 4, 12); }
+
+    // Five Columns & Spans
+    &.five { @include gs-span(d, 5); }
+    &.five-six { @include gs-span(d, 5, 6); }
+    &.five-seven { @include gs-span(d, 5, 7); }
+    &.five-eight { @include gs-span(d, 5, 8); }
+    &.five-nine { @include gs-span(d, 5, 9); }
+    &.five-ten { @include gs-span(d, 5, 10); }
+    &.five-eleven { @include gs-span(d, 5, 11); }
+    &.five-twelve { @include gs-span(d, 5, 12); }
+
+    // Six Columns & Spans
+    &.six { @include gs-span(d, 6); }
+    &.six-seven { @include gs-span(d, 6, 7); }
+    &.six-eight { @include gs-span(d, 6, 8); }
+    &.six-nine { @include gs-span(d, 6, 9); }
+    &.six-ten { @include gs-span(d, 6, 10); }
+    &.six-eleven { @include gs-span(d, 6, 11); }
+    &.six-twelve { @include gs-span(d, 6, 12); }
+
+    // Seven Columns & Spans
+    &.seven { @include gs-span(d, 7); }
+    &.seven-eight { @include gs-span(d, 7, 8); }
+    &.seven-nine { @include gs-span(d, 7, 9); }
+    &.seven-ten { @include gs-span(d, 7, 10); }
+    &.seven-eleven { @include gs-span(d, 7, 11); }
+    &.seven-twelve { @include gs-span(d, 7, 12); }
+
+    // Eight Columns & Spans
+    &.eight { @include gs-span(d, 8); }
+    &.eight-nine { @include gs-span(d, 8, 9); }
+    &.eight-ten { @include gs-span(d, 8, 10); }
+    &.eight-eleven { @include gs-span(d, 8, 11); }
+    &.eight-twelve { @include gs-span(d, 8, 12); }
+
+    // Nine Columns & Spans
+    &.nine { @include gs-span(d, 9); }
+    &.nine-ten { @include gs-span(d, 9, 10); }
+    &.nine-eleven { @include gs-span(d, 9, 11); }
+    &.nine-twelve { @include gs-span(d, 9, 12); }
+
+    // Ten Columns & Spans
+    &.ten { @include gs-span(d, 10); }
+    &.ten-eleven { @include gs-span(d, 10, 11); }
+    &.ten-twelve { @include gs-span(d, 10, 12); }
+
+    // Eleven Columns & Spans
+    &.eleven { @include gs-span(d, 11); }
+    &.eleven-twelve { @include gs-span(d, 11, 12); }
+
+    // Twelve Columns & Spans
+    &.twelve { @include gs-span(d, 12); }
+
+  }
 }
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ※ TABLET                               
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-// Repeats 960, but sets max of 700px
+@media only screen and (min-width:768px) and (max-width: 1139px) {
+  
+  .wrapper { max-width: $tablet; }
 
-@media only
-screen and (max-width:1023px),
-screen and (min-device-width:321px) and (max-device-width:768px) and (orientation: portrait) {
-  .container                                  { width: 700px; }
-  #main-content.columns,
-  #sidebar                  { margin-left: 0; margin-right: 0; }
-  #sidebar                  { width: 100%; }
+  .d-hide, .m-hide { display: none; }
 
-  /* Base Grid */
-  .container .one.column                      { width: 60px;  }
-  .container .two.columns                     { width: 140px; }
-  .container .three.columns                   { width: 220px; }
-  .container .four.columns                    { width: 300px; }
-  .container .five.columns                    { width: 380px; }
-  .container .six.columns                     { width: 460px; }
-  .container .seven.columns                   { width: 540px; }
-  .container .eight.columns                   { width: 620px; }
-  .container .nine.columns,
-  .container .ten.columns,          
-  .container .eleven.columns,
-  .container .twelve.columns          { width: 700px; } /* max is 700px */
+  .column {
+  
+    // One Column & Spans
+    &.one { @include gs-span(t, 1); }
+    &.one-two { @include gs-span(t, 1, 2); }
+    &.one-three { @include gs-span(t, 1, 3); }
+    &.one-four { @include gs-span(t, 1, 4); }
+    &.one-five { @include gs-span(t, 1, 5); }
+    &.one-six { @include gs-span(t, 1, 6); }
 
-  /* Variations */
-  .container .one-half.columns        { width: 340px; }
-  .container .one-third.columns         { width: 220px; }
-  .container .two-thirds.columns        { width: 460px; }
-  .container .one-quarter.columns       { width: 160px; }
-  .container .three-quarters.columns      { width: 520px; }
+    // Two Columns & Spans
+    &.two { @include gs-span(t, 2); }
+    &.two-two { @include gs-span(t, 2, 2); }
+    &.two-three { @include gs-span(t, 2, 3); }
+    &.two-four { @include gs-span(t, 2, 4); }
+    &.two-five { @include gs-span(t, 2, 5); }
+    &.two-six { @include gs-span(t, 2, 6); }
 
-  /* Full width */
-  .fullwidth                  { margin: 0 -10px;}
-  .fullwidth .four.columns          { width: 340px;}
-  .fullwidth .three.columns           { width: 340px;}
-  .fullwidth .three.columns.left-sidebar    { width: 220px; }
-  .fullwidth .nine.columns.has-left-sidebar   { width: 460px; }
 
-  /* Gallery layout */
-  .gallery.fullwidth  {margin: 0 -10px;}
-  .gallery.fullwidth .three.columns       {width: 220px;}
+    // Three Columns & Spans
+    &.three { @include gs-span(t, 3); }
+    &.three-four { @include gs-span(t, 3, 4); }
+    &.three-five { @include gs-span(t, 3, 5); }
+    &.three-six { @include gs-span(t, 3, 6); }
+
+    // Four Columns & Spans
+    &.four { @include gs-span(t, 4); }
+    &.four-five { @include gs-span(t, 4, 5); }
+    &.four-six { @include gs-span(t, 4, 6); }
+
+    // Five Columns & Spans
+    &.five { @include gs-span(t, 5); }
+    &.five-six { @include gs-span(t, 5, 6); }
+
+    // Six Columns & Spans
+    &.six { @include gs-span(t, 6); }
+
+    // Seven-Twelve Columns & Spans
+    &.seven, &.eight, &.nine, &.ten, &.eleven, &.tweleve { @include gs-span(t, all); }
+
+  }
+
 }
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ※ MOBILE                               
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
-@media only 
-screen and (max-width : 767px),
-screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .container                  { width: 300px; padding: 0 10px; }
-  .columns, .column               { margin: 0 0 10px; }
-  .mobile.multi-column            { margin: 0 -10px; }
-  .fullwidth, .gallery.fullwidth        { margin: 0; }
+@media only screen and (max-width: 767px) {
+  
+  .wrapper { max-width: $mobile; }
 
-  .container .one.column,
-  .container .two.columns,
-  .container .three.columns,
-  .container .four.columns,
-  .container .five.columns,
-  .container .six.columns,
-  .container .seven.columns,
-  .container .eight.columns,
-  .container .nine.columns,
-  .container .ten.columns,
-  .container .eleven.columns,
-  .container .twelve.columns,
-  .container .one-half.columns,
-  .container .one-third.columns,
-  .container .two-thirds.columns,
-  .container .three-quarters.columns      { width: 300px; } /* max is 300px */
+  .d-hide, .t-hide { display: none; }
 
-  /* Variations */
-  .container .one-quarter.columns,
-  .container .mobile.multi-column .three.columns  { width: 140px; margin-left: 10px; margin-right: 10px; }
+  .column {
+  
+    // One Column & Spans
+    &.one { @include gs-span(m, 1); }
+    &.one-two { @include gs-span(m, 1, 2); }
+    &.one-three { @include gs-span(m, 1, 3); }
+    &.one-four { @include gs-span(m, all); }
 
-  .fullwidth .four.columns,
-  .fullwidth .three.columns,
-  .gallery.fullwidth .three.columns,
-  .fullwidth .three.columns.left-sidebar,
-  .fullwidth .nine.columns.has-left-sidebar   { width: 300px; }
+    // Two Columns & Spans
+    &.two { @include gs-span(m, 2); }
+    &.two-two { @include gs-span(m, 2, 2); }
+    &.two-three { @include gs-span(m, 2, 3); }
+    &.two-four { @include gs-span(m, 2, 4); }
 
-  .m-hide {display: none;}
+
+    // Three Columns & Spans
+    &.three { @include gs-span(m, 3); }
+    &.three-four { @include gs-span(m, 3, 4); }
+
+    // Four Columns & Spans
+    &.four { @include gs-span(m, 4); }
+
+    // Four-Twelve Columns & Spans
+    &.five, &.six, &.seven, &.eight, &.nine, &.ten, &.eleven, &.tweleve { @include gs-span(m, all); }
+
+  }
+
+
 }
