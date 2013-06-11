@@ -5,44 +5,34 @@
 get_header(); 
 ?>
 	
-	<!-- section -->
 	<section role="main">
 	
-		<h1><?php the_title(); ?></h1>
-	
-	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
-	
-		<!-- article -->
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		
-			<?php the_content(); ?>
+		<?php $recent = new WP_Query("post_type=vehicles"); while($recent->have_posts()) : $recent->the_post();?>
+			<?php the_title_attribute(); ?>
+		<?php
+			$image = get_post_meta( $post->ID, 'vehicle_photo', true ); 
+			foreach( $image as $photo){
+				$image_id = $photo['vehicle-photo'];
+			}
+			$attachment_image = wp_get_attachment_image_src( $image_id, 'full' ); 
+			$src = $attachment_image[0]; 
 			
-			<?php comments_template( '', true ); // Remove if you don't want comments ?>
-			
-			<br class="clear">
-			
-			<?php edit_post_link(); ?>
-			
-		</article>
-		<!-- /article -->
-		
-	<?php endwhile; ?>
-	
-	<?php else: ?>
-	
-		<!-- article -->
-		<article>
-			
-			<h2><?php _e( 'Sorry, nothing to display.', 'vg' ); ?></h2>
-			
-		</article>
-		<!-- /article -->
-	
-	<?php endif; ?>
-	
+			if( !empty( $src ) ) 		
+				echo '<img src="'.$src.'"/>';
+
+
+
+			$amenities = get_post_meta( $post->ID, 'vehicle_amenities', true ); 
+
+			foreach( $amenities as $item){
+				echo '<br />';
+				echo $item['amenities-name'];
+			}
+
+		?>
+
+		<?php endwhile;?>
 	</section>
-	<!-- /section -->
 	
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

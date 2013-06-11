@@ -17,6 +17,9 @@
 
 // You can place your Options Panel code here
 // Suggested https://github.com/owldesign/WP-Blank-Options-Panel
+if(!class_exists('rh_Options')){
+  require_once('admin/options.php');
+}
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ※ THEME SUPPORT                                            
