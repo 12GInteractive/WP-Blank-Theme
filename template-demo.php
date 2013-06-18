@@ -1,28 +1,47 @@
 <?php 
 //
-// ※ Template Name: Grid 
-// 
-get_header(); 
-?>
+// Template Name: Demo Template 
+//
+get_header(); ?>
 	
-	<section role="main" class="container">
-
-				<h1>Desktop</h1>
-
-				<!-- class examples -->
-					<div class="column one box"><h1>d1</h1></div>
-					<div class="column two box"><h1>d2</h1></div>
-					<div class="column three box"><h1>d3</h1></div>
-					<div class="column four box"><h1>d4</h1></div>
-					<div class="column five box"><h1>d5</h1></div>
-					<div class="column six box"><h1>d6</h1></div>
-					<div class="column seven box"><h1>d7</h1></div>
-					<div class="column eight box"><h1>d8</h1></div>
-					<div class="column nine box"><h1>d9</h1></div>
-					<div class="column ten box"><h1>d10</h1></div>
-					<div class="column eleven box"><h1>d11</h1></div>
-					<div class="column twelve box"><h1>d12</h1></div>
-
+	<!-- Section -->
+	<section>
+	
+		<h1><?php the_title(); ?></h1>
+	
+	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+	
+		<!-- Article -->
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		
+			<?php the_content(); ?>
+			
+			<?php comments_template( '', true ); // Remove if you don't want comments ?>
+			
+			<br class="clear">
+			
+			<?php edit_post_link(); ?>
+			
+		</article>
+		<!-- /Article -->
+		
+	<?php endwhile; ?>
+	
+	<?php else: ?>
+	
+		<!-- Article -->
+		<article>
+			
+			<h2><?php _e( 'Sorry, nothing to display.', 'vg' ); ?></h2>
+			
+		</article>
+		<!-- /Article -->
+	
+	<?php endif; ?>
+	
 	</section>
+	<!-- /Section -->
 	
+<?php get_sidebar(); ?>
+
 <?php get_footer(); ?>

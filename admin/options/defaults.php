@@ -562,7 +562,7 @@ if(!class_exists('rh_Options') ){
             
             echo '<input type="hidden" id="last_tab" name="' . $this->args['opt_name'] . '[last_tab]" value="' . $this->options['last_tab'] . '" />';
 
-            echo '<div id="rh-opts-header">';
+            echo '<div id="rh-opts-header"><div class="rh-logo"><img src="' .rh_OPTIONS_URL . '/img/framework/rh_logo.svg" alt="Logo" class="logo-img" /><p>Theme Options</p></div>';
             submit_button('', 'primary', '', false);
             echo ' &nbsp; ';
             submit_button(__('Reset to Defaults', rh_TEXT_DOMAIN), 'secondary', $this->args['opt_name'] . '[defaults]', false);

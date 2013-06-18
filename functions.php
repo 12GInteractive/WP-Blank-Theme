@@ -7,16 +7,11 @@
 //  ◇ Custom Post Types                     
 // ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆ //
 
-// This WP Blank Theme has been configured from html5blank.com
-// Author Credit: @toddmotto
-
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 // ※ EXTERNAL MODULES/FILES                                   
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // You can place your Options Panel code here
-// Suggested https://github.com/owldesign/WP-Blank-Options-Panel
 if(!class_exists('rh_Options')){
   require_once('admin/options.php');
 }
